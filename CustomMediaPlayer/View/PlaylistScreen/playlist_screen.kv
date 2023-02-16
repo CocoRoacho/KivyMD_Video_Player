@@ -1,0 +1,89 @@
+#:import Window kivy.core.window.Window
+
+<PlaylistScreenView>
+    #md_bg_color: app.theme_cls.bg_light
+    hero_to: hero_to
+
+    MDTopAppBar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        type_height: "small"
+        #md_bg_color: "white"
+        title: "Playlist"
+        left_action_items: [["chevron-left", lambda x: root.back_to_main_screen()]]
+
+    MDStackLayout:
+        #cols: 1
+        pos_hint: {"y": .0}
+        size_hint_y: None
+        height: root.height - root.ids.toolbar.height
+
+        MDGridLayout:
+            id: gridlayout_hero
+            rows: 1
+            adaptive_size: True
+
+            HeroTarget:
+                id: hero_to
+                tag: "here_video"
+                adaptive_width: True
+                adaptive_height: True
+                size_hint_y: None
+                size_hint_X: None
+                pos_hint: {"top": .5, "left": 0.1}
+                height: "200dp"
+                width: "336dp"
+                md_bg_color: "black" #"grey"
+                on_release: root.back_to_main_screen()
+
+            MDGridLayout:
+                orientation: "tb-lr"
+                cols: 2
+                adaptive_size: True
+                pos_hint: {"right": 1, "top": 1}
+                padding: "12dp"
+                spacing: "12dp"
+
+                ButtonPlMenuOpenFile:
+                    text: "Datei(en) öffnen..."
+                    size_hint: 1, 1
+
+                ButtonPlMenuOpenFolder:
+                    text: "Ordner öffnen..."
+                    size_hint: 1, 1
+
+                MDRectangleFlatButton:
+                    text: "..."
+                    size_hint: 1, 1
+
+                MDRectangleFlatButton:
+                    text: "..."
+                    size_hint: 1, 1
+
+                ButtonPlMenuSaveList:
+                    text: "Liste speichern..."
+                    size_hint: 1, 1
+
+                ButtonPlMenuLoadList:
+                    text: "Liste laden..."
+                    size_hint: 1, 1
+
+                ButtonPlMenuMixList:
+                    text: "Liste mischen..."
+                    size_hint: 1, 1
+                    
+
+                ButtonPlMenuClearList:
+                    text: "Liste leeren..."
+                    size_hint: 1, 1
+
+        ScrollView:
+            #adaptive_size: True
+            size_hint_y: None
+            #height: "600dp"
+            height: Window.height - (root.ids.toolbar.height + root.ids.gridlayout_hero.height)
+
+            MDList:
+                id: container_playlist
+                padding: "12dp"
+                spacing: "12dp"

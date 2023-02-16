@@ -1,0 +1,14 @@
+{
+    "path_folder1": "E:/Coding/VideoAssets/edit",
+    "path_folder2": "E:/Coding/VideoAssets/hot",
+    "path_folder3": "E:/Coding/VideoAssets/hottest",
+    "path_thumbnails": "E:/Coding/VideoAssets/thumbs",
+    "loop_playlist": false,
+    "put_in_r_bin": true,
+    "keep_in_plist": true,
+    "allow_subfolders": true,
+    "init_dir": "E:/Coding/VideoAssets",
+    "folder_1": "edit",
+    "folder_2": "hot",
+    "folder_3": "hottest"
+}

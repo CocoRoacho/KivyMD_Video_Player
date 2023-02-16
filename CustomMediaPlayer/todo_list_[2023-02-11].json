@@ -1,0 +1,69 @@
+{
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/libs/disk_operations.py": [
+        "63: # TODO: Abbruch bei Button abbrechen auslösen",
+        "106: # TODO: handle cancel / exit!!!",
+        "144: # TODO: also take videos from subfolders, maybe optional --> OK",
+        "145: # TODO: Abbruch bei Button abbrechen auslösen",
+        "173: # TODO: do also allow pictures...",
+        "224: # TODO: wenn dateien löschen einen leeren Ordner hinterlässt, diesen evtl löschen: os.rmdir(\"folder\")",
+        "236: # TODO: handle file already exists in a proper way "
+    ],
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/libs/playlist_manipulation.py": [
+        "56: # TODO: remove from container_playlist --> ok?",
+        "109: # TODO change playlist item to dictionary: [film:path, duration:time, thumb:path, title:string, resolution:(x, y), ...] --> film and thumb are strings with path, duration is formatted timestamp",
+        "148: # TODO change playlist item to dictionary: [film:path, duration:time, thumb:path, title:string, resolution:(x, y), ...] --> film and thumb are strings with path, duration is formatted timestamp"
+    ],
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/libs/retrieve_metadata.py": [
+        "56: # TODO find a way to calc duration and not set default value to 10 seconds"
+    ],
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/main.py": [
+        "57: # TODO: create an .ini-file to load (and save) initial settings and load on startup",
+        "83: # TODO: make this much args better and more pythonian",
+        "185: # TODO: create a backgroundimage for standby",
+        "192: # TODO: only get video.duration on load and then take out the label_dur.text from scheduling process --> ok",
+        "227: # TODO: put this function to disk operations etc...",
+        "234: # TODO: handle files with extension .lnk ...",
+        "245: # TODO: handling an drag and drop folder",
+        "253: # TODO: handling an drag and drop file or folder link",
+        "379: # TODO: create also controls for second and third screen",
+        "413: # TODO: Keyboard controls",
+        "414: # TODO: Mouse cursor in or out window, ",
+        "415: # TODO: Mouse cursor hide when not moved for 5 seconds",
+        "416: # TODO: drag and Drop behavior --> OK",
+        "417: # TODO: Add Button / method for renaming file",
+        "418: # TODO: Button for loading let's say 50 videos from one directory (incl. subfolders) in to playlist",
+        "419: # Todo: open preview picture in dialog window in a bigger version ?"
+    ],
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/View/MainScreen/main_screen.py": [
+        "59: # TODO: No Animation on press! (no visibility of a button press) --> OK (ripple_scale: 0 # makes ripplebehavior invisible)",
+        "140: # TODO: open first entry in playlist, if playlist empty: open File dialog --> ok",
+        "215: # TODO: open options screen --> ok",
+        "297: # TODO: file infos: make a dialog message to show metadata of the selected video",
+        "298: # TODO: Dialog should have an ok button but also a timer and hide dialog after maybe 10 seconds?",
+        "303: # TODO: make a dropmenu for choosing open file or open folder dialog",
+        "406: # TODO: basevalue or get duration from playlist item if available --> ok",
+        "543: # TODO: Choose keep moved file in playlist or remove from playlist??? --> ok",
+        "546: # TODO: use what you have in playlist dict!!!",
+        "548: # TODO: get new path to playlist or delete from playlist --> OK",
+        "550: # TODO: remember video position and restart video from there --> OK",
+        "599: # TODO check video.state and only do something when state == 'play' ???notwendig or not???",
+        "662: # TODO: create a label inside buttonbox where to show the tooltip_text for the buttons instead of these annoying bubbles...   "
+    ],
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/View/OptionsScreen/options_screen.kv": [
+        "173: # TODO: \"Error\""
+    ],
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/View/OptionsScreen/options_screen.py": [
+        "19: # TODO: Animation on call and exit - animate to come from right and go to right"
+    ],
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/View/PlaylistScreen/components/card.py": [
+        "9: # TODO: label with length of video (duration) --> ok"
+    ],
+    "E:/Coding/MediaPlayer/CustomMediaPlayer/View/PlaylistScreen/playlist_screen.py": [
+        "18: # TODO: get back to main screen when click on Hero(videoscreen) --> ok",
+        "19: # TODO: create functions for buttons: Liste speichern und Liste laden",
+        "61: # TODO: When app in playlist_screen_view and next video starts to play, update highlighting!",
+        "168: # TODO gibts da einen besseren zugriff drauf etwa get_current_screen(?) etc.??? <-- create Zugriff über myControl?",
+        "240: # TODO: filmpath muss sein!!! --> ok",
+        "241: # TODO: wenn andere einträge fehlen, versuche diese selbst zu erzeugen!!! --> ok"
+    ]
+}

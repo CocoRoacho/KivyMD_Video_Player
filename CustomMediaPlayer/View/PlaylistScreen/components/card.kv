@@ -1,0 +1,37 @@
+<VideoCard>
+    size_hint_y: None
+    height: "42dp"
+    padding: "2dp"
+    spacing: "12dp"
+    radius: 12
+    elevation: 9
+    #on_release: print(f"clicked {root.path}...")
+
+    FitImage:
+        source: root.thumb
+        radius: root.radius
+        size_hint_x: None
+        width: self.height
+
+    MDBoxLayout:
+        orientation: "horizontal"
+        padding: 0, 0, "10dp", 0
+
+        MDLabel:
+            text: root.text
+            theme_text_color: "Hint"
+            bold: True
+            adaptive_height: True
+            pos_hint: {"center_y": .5}
+            #md_bg_color: 0/255, 255/255, 0/255, .2
+
+        MDLabel:
+            text: root.duration
+            theme_text_color: "Hint"
+            halign: "right"
+            #bold: True
+            #adaptive_height: True
+            #adaptive_width: True
+            adaptive_size: True
+            pos_hint: {"center_y": .5, "right": .9}
+            #md_bg_color: 0/255, 102/255, 255/255, .2

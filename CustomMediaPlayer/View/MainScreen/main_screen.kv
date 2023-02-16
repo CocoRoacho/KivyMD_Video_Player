@@ -1,0 +1,259 @@
+<PlayerButtonBox>
+    orientation: "vertical"
+    #size_hint: .86, .1
+    size_hint: None, None
+    height: 90
+    width: 660
+    padding: "8dp"
+    spacing: "6dp"
+    md_bg_color: 0, 0, 0, .5 #app.theme_cls.primary_color
+
+    MDRelativeLayout:
+        id: progress_container
+        #md_bg_color: 251/255, 69/255, 0, .6 #.95 # -> yelloish bg-color for debug
+
+        MDLabel:
+            id: lbl_time_pos
+            halign: "center"
+            pos_hint: {"center_y": .5, "left": 0}
+            text: " 0:00:00"
+            adaptive_size: True
+            font_style: "Caption"
+            theme_text_color: "Custom"
+            text_color: "white"
+            #md_bg_color: 251/255, 69/255, 0, .6 #.95 # -> yelloish bg-color for debug
+
+        ProgressBarVideo:
+            video: root.parent.ids.video_player
+            size_hint_y: None
+            height: '4dp'
+            size_hint_x: None
+            width: root.width - (root.ids.lbl_time_dur.width + root.ids.lbl_time_pos.width + 40)
+            pos_hint: {"center_y": .5, "center_x": .5}
+            value: self.video.position if self.video else 0
+            max: max(self.video.duration, self.video.position, 1)
+
+        MDLabel:
+            id: lbl_time_dur
+            halign: "center"
+            pos_hint: {"center_y": .5, "right": 1}
+            text: "0:00:00"
+            adaptive_size: True
+            font_style: "Caption"
+            theme_text_color: "Custom"
+            text_color: "white"
+            #md_bg_color: 251/255, 69/255, 0, .6 #.95 # -> yelloish bg-color for debug
+
+    MDBoxLayout:
+
+        MDGridLayout:
+            rows: 1
+            size_hint: 4, 1
+            #md_bg_color: 251/255, 69/255, 0, .3 #.95 # -> yelloish bg-color for debug
+
+            MDBoxLayout:
+                #size_hint: 4, 1
+                orientation: "vertical"
+
+                MDBoxLayout:
+
+                    ButtonLastVideo:
+                        id: btn_last
+                        icon: "skip-previous"
+                        tooltip_text: "previous video"
+                        video: root.parent.ids.video_player
+                        on_release: self.video.prev_video()
+
+                    ButtonVideoStop:
+                        id: btn_stop
+                        icon: "stop"
+                        tooltip_text: "Stop"
+                        video: root.parent.ids.video_player
+                        # unload the video and show Logo or so...
+
+                    ButtonVideoPlayPause:
+                        id: btn_play_pause
+                        video: root.parent.ids.video_player
+                        icon: "pause" if self.video.state == "play" else "play"
+                        tooltip_text: "play" if self.video.state == "play" else "paused"
+
+                    ButtonNextVideo:
+                        id: btn_next
+                        icon: "skip-next"
+                        tooltip_text: "next video"
+                        video: root.parent.ids.video_player
+                        on_release: self.video.next_video()
+
+                    MDBoxLayout:
+                        ButtonVideoVolume:
+                            id: btn_volume
+                            video: root.parent.ids.video_player
+                            halign: "center"
+                            icon: "volume-variant-off" if self.video.volume <= 0 else "volume-high"
+
+                        MDRelativeLayout:
+                            id: volume_container
+                            size_hint_x: None
+                            width: root.width * 20 / 100
+                            #md_bg_color: 251/255, 69/255, 0, .6 #.95 # -> yelloish bg-color for debug
+
+                            MDSlider:
+                                video: root.parent.ids.video_player
+                                #adaptive_size: True
+                                size_hint_y: None
+                                height: "4dp"
+                                size_hint_x: None
+                                width: "120dp"
+                                pos_hint: {"center_y": .6, "x": 0}
+                                max: 100
+                                value: self.video.volume * 100
+                                on_value: self.video.volume = self.value / 100
+
+                    ButtonShowPlaylist:
+                        id: btn_show_playlist
+                        icon: "view-list"
+                        tooltip_text: "Playlist"
+                        #size_hint_y: .8
+
+                    ButtonShowSidebar:
+                        id: btn_sidebar_on
+                        icon: "bookshelf"
+                        tooltip_text: "Show / Hide Sidebar"
+                        #size_hint_y: .8
+
+                    ButtonVideoFullScreen:
+                        id: btn_fullscreen
+                        icon: "fullscreen" if not self.f_screen else "fullscreen-exit"
+                        tooltip_text: "fullscreen"
+                        #size_hint_y: .8
+
+                    ButtonSettings:
+                        id: btn_settings
+                        icon: "cog"
+                        tooltip_text: "settings"
+                        #size_hint_y: .8
+
+
+<SideControls>
+
+    orientation: "bt-rl"
+    cols: 1
+    #size_hint: .03, .88
+    size_hint_y: 1
+    #adaptive_width: False #True
+    size_hint_x: None
+    width: dp(42)
+    md_bg_color: 0, 0, 0, .5 #app.theme_cls.primary_color
+    #md_bg_color: 232/255, 42/255, 0, .4 #.95 # -> reddish color for debug
+
+    ButtonSendToFolder3:
+        id: btn_folder3
+        icon: "chili-hot"
+        ###tooltip_text: "Send to hottest-folder"
+
+    ButtonSendToFolder2:
+        id: btn_folder2
+        icon: "chili-mild"
+        ###tooltip_text: "Send to hot-folder"
+
+    ButtonSendToFolder1:
+        id: btn_folder1
+        icon: "video-stabilization"
+        ###tooltip_text: self.tooltip #"Send to edit-folder"
+
+    ButtonDelVideo:
+        id: btn_del
+        icon: "delete-forever"
+        tooltip_text: "DELETE File!"
+
+    Widget:
+        size_hint_y: .5
+
+    ButtonAbout:
+        id: btn_about
+        icon: "information"
+        tooltip_text: "File info..."
+
+    Widget:
+        size_hint_y: .1
+
+    ButtonOpen:
+        id: btn_open
+        icon: "folder-open"
+        tooltip_text: "OPEN File!"
+
+
+<RandomJumps>
+    cols: 2
+    #adaptive_size: True
+    #md_bg_color: 255/255, 99/255, 71/255, .4 #.95 # -> yellowish color for debug
+
+    ButtonRandomJump:
+        id: btn_rnd_jump_back
+        video: root.parent.ids.video_player
+        tooltip_text: "Jump back by a random value"
+        #icon: "arrow-expand-left"
+        size_hint: 1, 1
+        on_release: self.random_jump("backward")
+        ripple_scale: 0 # makes ripplebehavior invisible
+        #md_bg_color: 0/255, 255/255, 0/255, .2
+
+    ButtonRandomJump:
+        id: btn_rnd_jump_forward
+        video: root.parent.ids.video_player
+        tooltip_text: "Jump forth by a random value"
+        #icon: "arrow-expand-right"
+        size_hint: 1, 1
+        on_release: self.random_jump("forward")
+        ripple_scale: 0 # makes ripplebehavior invisible
+        #md_bg_color: 0/255, 102/255, 255/255, .2
+
+<MainScreenView>
+    md_bg_color: 'black'
+    allow_fullscreen: True # False
+
+    MDHeroFrom:
+        id: hero_from
+        tag: "hero_video"
+
+        VideoScreen:
+            id: video_player
+            options: {'eos': 'stop'}
+            allow_stretch: True
+            volume: .75 #volume.value / 100 [in %]
+            pos_hint: {'top': 1}
+            color: 0, 0, 0, .6 #147/255, 146/255, 136/255, 1
+
+    PlayerButtonBox:
+        id: button_box
+        video: root
+        pos_hint: {"center_x": .5}
+
+    RandomJumps:
+        id: random_jumps
+        #pos_hint: {"y": .01, "right": .65}
+        pos_hint: {"x": 0, "top": 1}
+        size_hint: None, None
+        height: root.height - root.ids.button_box.height
+        width: root.width - root.ids.side_bar.width
+
+    SideControls:
+        id: side_bar
+        pos_hint: {"top": 1, "right": 1}
+        #adaptive_size: True
+
+    MDLabel:
+        id: lbl_video_title
+        #md_bg_color: 232/255, 42/255, 0, .8 #.95
+        pos_hint: {"top": .94, "x": .05}
+        bold: True
+        adaptive_height: True
+        size_hint_x: .88
+        theme_text_color: "Custom"
+        text_color: "white"
+        font_style: "Subtitle2"
+
+    HoverOverApp:
+        #md_bg_color: 232/255, 42/255, 0, .2 #.95
+        size_hint: .95, .15
+        pos_hint: {"x": 0, "bottom": 0}

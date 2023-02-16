@@ -1,0 +1,174 @@
+<ClickableTextField>
+    size_hint_y: None
+    size_hint_x: .4
+    height: text_field.height
+
+    MDTextField:
+        id: text_field
+        #hint_text: root.hint_text
+        #helper_text: root.helper_text
+        hint_text: f"set {root.name} Folder"
+        helper_text: "Enter the path to the corresponding folder!"
+        helper_text_mode: "on_focus"
+        text: root.text
+        theme_text_color: "Hint"
+        size_hint_x: .76
+        # Darf beim duschen (Wasserkontakt); nicht immer offen... (??? Was wollte ich mir damit sagen ???)
+
+    MDIconButton:
+        icon: "folder-open"
+        pos_hint: {"center_y": .5}
+        pos: text_field.width - self.width + dp(8), 0
+        theme_text_color: "Hint"
+        on_release: self.parent.apply_path()
+
+    MDRectangleFlatButton:
+        opacity: root.visible
+        disabled: root.disable
+        text: root.button_text
+        size_hint_X: 1
+        pos_hint: {"center_y": .5}
+        pos: text_field.width + dp(12), 0
+        theme_text_color: "Hint"
+        #line_color: self.theme_text_color
+        on_release: root.button_clicked(root)
+
+
+<CheckItem>
+    size_hint_y: None #.05
+    height: "42dp"
+
+    MDSwitch:
+        id: switch
+        widget_style: "ios" #"android"
+        size_hint: None, None
+        size: "48dp", "12dp"
+        pos_hint: {"center_y": .5, "x": .02}
+        on_active: root.on_select((self.active, root.belong_to))
+        active: root.active
+
+    MDLabel:
+        text: root.text
+        adaptive_size: True
+        theme_text_color: "Hint"
+        pos_hint: {"center_y": .5, "x": .13}
+
+
+<OptionsScreenView>
+    #md_bg_color: app.theme_cls.bg_light
+
+    MDTopAppBar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        type_height: "small"
+        #md_bg_color: "white"
+        title: "Settings"
+        left_action_items: [["chevron-left", lambda x: root.back_to_main_screen()]]
+
+
+    ScrollView:
+        id: scrollview_options
+        size_hint_y: None
+        height: Window.height - (root.ids.toolbar.height + root.ids.bottom_panel.height)
+        pos_hint: {"x": .07, "top": (100-((root.ids.toolbar.height*100)/Window.height))/100}
+
+
+        MDGridLayout:
+            cols: 1
+            pos_hint: {"y": 0, "x": .1}
+            size_hint_y: None
+            height: root.height - root.ids.toolbar.height
+            size_hint_x: .6
+
+            MDGridLayout:
+                rows: 1
+                orientation: "lr-tb"
+                adaptive_height: True
+                padding: "12dp"
+                spacing: "23dp"
+
+                MDRectangleFlatButton:
+                    text: "Save Settings Profile"
+                    on_release: root.save_settings()
+
+                MDRectangleFlatButton:
+                    text: "Load Settings Profile"
+                    on_release: root.load_settings()
+
+            CheckItem:
+                id: check_loop
+                text: "Loop Playlist"
+                belong_to: "loop_pl"
+
+            CheckItem:
+                id: check_bin
+                text: "Send deleted files to recycle bin"
+                belong_to: "r_bin"
+
+            CheckItem:
+                id: check_keep
+                text: "Keep moved files in playlist"
+                belong_to: "keep_files"
+
+            CheckItem:
+                id: check_subfolders
+                text: "Also load files in subfolders"
+                belong_to: "subfolders"
+
+            ClickableTextField:
+                id: set_init_directory
+                hint_text: "set directory for startup"
+                helper_text: "Enter the path to the folder for start file and folder operations"
+                helper_text_mode: "on_focus"
+                belong_to: "init_dir"
+                button_text: "..."
+                visible: 0
+                disable: True
+
+            ClickableTextField:
+                id: set_folder1
+                belong_to: "folder_1"
+                button_text: "Rename Folder"
+
+            ClickableTextField:
+                id: set_folder2
+                belong_to: "folder_2"
+                button_text: "Rename Folder"
+
+            ClickableTextField:
+                id: set_folder3
+                belong_to: "folder_3"
+                button_text: "Rename Folder"
+
+            ClickableTextField:
+                id: set_thumbs_folder
+                belong_to: "thumbs"
+                button_text: "Clear thumbs   "
+
+
+    MDStackLayout:
+        id: bottom_panel
+        orientation: "rl-bt"
+        pos: root.ids.scrollview_options.pos
+        pos_hint: {"y": .01}
+        size_hint_x: None
+        width: root.width - root.ids.scrollview_options.width
+        size_hint_x: .6
+        size_hint_y: .05
+        spacing: "12dp"
+        #md_bg_color: 251/255, 169/255, 0, .6 #--> cooles rot!!!
+
+        MDRaisedButton:
+            id: btn_exit
+            size_hint: None, None
+            width: root.width*0.2
+            text: "exit"
+            on_release: root.back_to_main_screen()
+
+        MDLabel:
+            id: lbl_info_panel
+            size_hint: None, 1
+            width: root.ids.bottom_panel.width-root.ids.btn_exit.width-dp(12)
+            valign: 'middle' #'center'
+            theme_text_color: "Hint" # TODO: "Error"
+            font_style: "Caption" #Must be one of: ['H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Subtitle1', 'Subtitle2', 'Body1', 'Body2', 'Button', 'Caption', 'Overline', 'Icon']

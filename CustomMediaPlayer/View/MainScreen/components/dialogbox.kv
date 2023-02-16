@@ -1,0 +1,21 @@
+<DialogRename>
+    radius: [20, 7, 20, 7]
+    type: 'custom'
+    size_hint: (None, None)
+    #height: "550dp"
+    width: "420dp"
+
+
+<Content>
+    spacing: "23dp"
+    size_hint_y: None
+    height: "69dp"
+
+    MDTextField:
+        id: text_field_new_name
+        hint_text: f"Enter new name for the folder"
+        helper_text: "Enter the name you wish the folder should have!"
+        helper_text_mode: "on_focus"
+        text: root.text
+        theme_text_color: "Hint"
+        size_hint_x: .76

@@ -3,7 +3,7 @@ A videoplayer with standard functionality, a playlist and some buttons for delet
 Project is realized with Python, Kivy, KivyMD, ffmpeg and Send2Trash. 
 It is Based on a video from Youtube Channel KivyMD: https://www.youtube.com/watch?v=v8e-ukTAg5o
 
-The player itself has a controlboard with usual buttons like play, stop, pause, next, previous, Fullscreen on/off, etc.
+The player itself has a controlboard with usual buttons like play, stop, pause, next, previous, Fullscreen on/off, volume slider, interactive progressbar, etc.
 When you click in the left half or in the right half of the videoscreen you can move back or forward for a random amount of seconds.
 It also has a (hideable) Sideboard with button for loading video, show information, delete or move current video to other location.
 There's also a working Playlist, you can load single movies or whole directories to the playlist. I also implemented a drag-and-drop functionality.
